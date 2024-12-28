@@ -25,21 +25,19 @@ function Navbar() {
       <div style={styles.leftLinks}>
         <Link to="/" style={styles.link}>Home</Link>
         <Link to="/products" style={styles.link}>Products</Link>
+        <Link to="/cart" style={styles.link}>Cart ({cartCount})</Link>
       </div>
       <div style={styles.rightLinks}>
-        <Link to="/cart" style={styles.link}>
-          Cart ({cartCount})
-        </Link>
         {currentUser ? (
-          <>
-            <span style={styles.username}>Welcome, {currentUser.username}!</span>
+          <div style={styles.userSection}>
+            <span style={styles.username}>Welcome, {currentUser.username}</span>
             <button onClick={handleLogout} style={styles.authLink}>Logout</button>
-          </>
+          </div>
         ) : (
-          <>
+          <div style={styles.authSection}>
             <Link to="/login" style={styles.authLink}>Login</Link>
             <Link to="/signup" style={styles.authLink}>Sign Up</Link>
-          </>
+          </div>
         )}
       </div>
     </nav>
@@ -61,8 +59,16 @@ const styles = {
   },
   rightLinks: {
     display: 'flex',
-    gap: '1rem',
     alignItems: 'center',
+  },
+  userSection: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+  },
+  authSection: {
+    display: 'flex',
+    gap: '1rem',
   },
   link: {
     color: 'white',
@@ -79,7 +85,6 @@ const styles = {
   },
   username: {
     color: 'white',
-    marginRight: '1rem',
   }
 };
 
